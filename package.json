@@ -146,7 +146,7 @@
     "@types/node": "20.8.9",
     "tslint": "5.20.1",
     "typescript": "5.2.2",
-    "vsce": "1.62.0",
+    "vsce": "2.15.0",
     "vscode": "1.1.33"
   },
   "dependencies": {
