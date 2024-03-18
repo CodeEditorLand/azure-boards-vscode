@@ -9,7 +9,7 @@
     "url": "https://github.com/microsoft/azure-boards-vscode"
   },
   "engines": {
-    "vscode": "^1.30.0"
+    "vscode": "1.30.0"
   },
   "categories": [
     "Other"
@@ -141,18 +141,18 @@
     "package": "npm version patch --no-git-tag-version && vsce package"
   },
   "devDependencies": {
-    "@types/keytar": "^4.4.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "^20.11.28",
+    "@types/keytar": "4.4.0",
+    "@types/mocha": "10.0.6",
+    "@types/node": "20.11.28",
     "tslint": "5.20.1",
     "typescript": "5.4.2",
-    "vsce": "^1.62.0",
+    "vsce": "1.62.0",
     "vscode": "1.1.33"
   },
   "dependencies": {
-    "applicationinsights": "^2.9.5",
-    "azure-devops-node-api": "^12.5.0",
-    "keytar": "^7.9.0",
-    "vsts-device-flow-auth": "^1.136.0"
+    "applicationinsights": "2.9.5",
+    "azure-devops-node-api": "12.5.0",
+    "keytar": "7.9.0",
+    "vsts-device-flow-auth": "1.136.0"
   }
 }
