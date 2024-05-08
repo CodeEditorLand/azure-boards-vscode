@@ -148,7 +148,7 @@
 		"vsts-device-flow-auth": "1.136.0"
 	},
 	"devDependencies": {
-		"@playform/build": "0.0.8",
+		"@playform/build": "0.0.7",
 		"@playform/document": "0.0.6",
 		"@types/keytar": "4.4.0",
 		"@types/node": "20.12.11"
