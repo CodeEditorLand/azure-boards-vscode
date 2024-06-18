@@ -121,13 +121,13 @@
 		"onCommand:azure-boards.select-organization"
 	],
 	"dependencies": {
-		"applicationinsights": "^1.3.1",
-		"keytar": "^4.6.0",
+		"applicationinsights": "^3.1.0",
+		"keytar": "^7.9.0",
 		"vsts-device-flow-auth": "^1.136.0"
 	},
 	"devDependencies": {
 		"@types/keytar": "^4.4.0",
-		"@types/node": "^8.10.25"
+		"@types/node": "^20.14.5"
 	},
 	"extensionDependencies": [
 		"vscode.git"
