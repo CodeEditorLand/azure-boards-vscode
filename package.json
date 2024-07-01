@@ -121,7 +121,7 @@
 		"onCommand:azure-boards.select-organization"
 	],
 	"dependencies": {
-		"applicationinsights": "3.1.0",
+		"applicationinsights": "3.2.0",
 		"keytar": "7.9.0",
 		"vsts-device-flow-auth": "1.136.0"
 	},
