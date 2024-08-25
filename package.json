@@ -114,14 +114,14 @@
 		}
 	},
 	"dependencies": {
-		"applicationinsights": "3.2.1",
+		"applicationinsights": "3.2.2",
 		"keytar": "7.9.0",
 		"vsts-device-flow-auth": "1.136.0"
 	},
 	"description": "",
 	"devDependencies": {
 		"@types/keytar": "4.4.2",
-		"@types/node": "22.4.0"
+		"@types/node": "22.5.0"
 	},
 	"displayName": "Azure Boards",
 	"extensionDependencies": [
