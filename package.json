@@ -118,7 +118,6 @@
 		"keytar": "7.9.0",
 		"vsts-device-flow-auth": "1.136.0"
 	},
-	"description": "",
 	"devDependencies": {
 		"@types/keytar": "4.4.2",
 		"@types/node": "22.5.0"
