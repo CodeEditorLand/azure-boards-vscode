@@ -23,7 +23,7 @@ Azure DevOps Services organization. If you do not have one,
 
 Azure DevOps Server and Team Foundation Server are not yet supported.
 
-## Installation
+## 🚀 Installation
 
 First, you will need to install
 [Visual Studio Code](https://code.visualstudio.com/download) `1.30.0` or later.
