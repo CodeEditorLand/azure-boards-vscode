@@ -120,7 +120,7 @@
 	},
 	"devDependencies": {
 		"@types/keytar": "4.4.2",
-		"@types/node": "22.5.2"
+		"@types/node": "22.5.3"
 	},
 	"displayName": "Azure Boards",
 	"extensionDependencies": [
