@@ -6,13 +6,13 @@ import { IOrganization } from "./configuration/configuration";
 import { getTokenForOrganization } from "./configuration/token";
 
 export async function getWebApiForOrganization(
-	organization: IOrganization,
+  organization: IOrganization
 ): Promise<DevOpsClient.WebApi> {
-	const token = await getTokenForOrganization(organization);
-	if (!token) {
-		throw new Error("Cannot get token for organization");
-	}
+  const token = await getTokenForOrganization(organization);
+  if (!token) {
+    throw new Error("Cannot get token for organization");
+  }
 
-	const handler = DevOpsClient.getHandlerFromToken(token);
-	return new DevOpsClient.WebApi(organization.uri, handler);
+  const handler = DevOpsClient.getHandlerFromToken(token);
+  return new DevOpsClient.WebApi(organization.uri, handler);
 }
