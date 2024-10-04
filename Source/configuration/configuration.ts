@@ -2,38 +2,39 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 import * as vscode from "vscode";
-import { storeTokenForOrganization, removeTokenForOrganization } from "./token";
+
+import { removeTokenForOrganization, storeTokenForOrganization } from "./token";
 
 export interface IOrganization {
-  uri: string;
+	uri: string;
 }
 
 export interface IConfiguration {
-  currentOrganization: IOrganization | undefined;
-  currentProject: IProject | undefined;
+	currentOrganization: IOrganization | undefined;
+	currentProject: IProject | undefined;
 
-  organizations: IOrganization[];
+	organizations: IOrganization[];
 }
 
 export interface IProject {
-  id: string;
-  name: string;
+	id: string;
+	name: string;
 }
 
 const ConfigKey = "azure-boards";
 
 function getConfig(): vscode.WorkspaceConfiguration {
-  return vscode.workspace.getConfiguration(ConfigKey);
+	return vscode.workspace.getConfiguration(ConfigKey);
 }
 
 export function getConfiguration(): IConfiguration {
-  const config = getConfig();
+	const config = getConfig();
 
-  return {
-    organizations: config.get("organizations", []),
-    currentOrganization: config.get("current-organization", undefined),
-    currentProject: config.get("current-project", undefined)
-  };
+	return {
+		organizations: config.get("organizations", []),
+		currentOrganization: config.get("current-organization", undefined),
+		currentProject: config.get("current-project", undefined),
+	};
 }
 
 /**
@@ -41,98 +42,101 @@ export function getConfiguration(): IConfiguration {
  * @param organization
  */
 export async function addOrganization(
-  organization: IOrganization,
-  token: string
+	organization: IOrganization,
+	token: string,
 ): Promise<void> {
-  const config = getConfig();
+	const config = getConfig();
 
-  let organizations: IOrganization[] = [];
-  if (config.has("organizations")) {
-    organizations = config.get("organizations", []);
-  }
+	let organizations: IOrganization[] = [];
+	if (config.has("organizations")) {
+		organizations = config.get("organizations", []);
+	}
 
-  organizations.push(organization);
+	organizations.push(organization);
 
-  // Store token
-  await storeTokenForOrganization(organization, token);
+	// Store token
+	await storeTokenForOrganization(organization, token);
 
-  await config.update(
-    "organizations",
-    organizations,
-    vscode.ConfigurationTarget.Global
-  );
+	await config.update(
+		"organizations",
+		organizations,
+		vscode.ConfigurationTarget.Global,
+	);
 }
 
 export async function removeOrganization(
-  organization: IOrganization
+	organization: IOrganization,
 ): Promise<void> {
-  const config = getConfig();
-  if (config.has("organizations")) {
-    const organizations: IOrganization[] = config.get("organizations", []);
-    const idx = organizations.findIndex(
-      x => x.uri.toLocaleLowerCase() === organization.uri.toLocaleLowerCase()
-    );
-    if (idx >= 0) {
-      organizations.splice(idx, 1);
-    }
+	const config = getConfig();
+	if (config.has("organizations")) {
+		const organizations: IOrganization[] = config.get("organizations", []);
+		const idx = organizations.findIndex(
+			(x) =>
+				x.uri.toLocaleLowerCase() ===
+				organization.uri.toLocaleLowerCase(),
+		);
+		if (idx >= 0) {
+			organizations.splice(idx, 1);
+		}
 
-    await removeTokenForOrganization(organization);
+		await removeTokenForOrganization(organization);
 
-    await config.update(
-      "organizations",
-      organizations,
-      vscode.ConfigurationTarget.Global
-    );
-  }
+		await config.update(
+			"organizations",
+			organizations,
+			vscode.ConfigurationTarget.Global,
+		);
+	}
 }
 
 export function organizationExists(organization: IOrganization): boolean {
-  const config = getConfiguration();
+	const config = getConfiguration();
 
-  return config.organizations.some(
-    a => a.uri.toLocaleLowerCase() === organization.uri.toLocaleLowerCase()
-  );
+	return config.organizations.some(
+		(a) =>
+			a.uri.toLocaleLowerCase() === organization.uri.toLocaleLowerCase(),
+	);
 }
 
 /**
  * Set the current organization
  */
 export async function setCurrentOrganization(
-  organization: IOrganization | undefined
+	organization: IOrganization | undefined,
 ): Promise<void> {
-  await getConfig().update("current-organization", organization);
+	await getConfig().update("current-organization", organization);
 }
 
 /**
  * Get the current organization
  */
 export function getCurrentOrganization(): IOrganization | undefined {
-  return getConfiguration().currentOrganization;
+	return getConfiguration().currentOrganization;
 }
 
 /**
  * Set the current project
  */
 export async function setCurrentProject(
-  project: IProject | undefined
+	project: IProject | undefined,
 ): Promise<void> {
-  await getConfig().update("current-project", project);
+	await getConfig().update("current-project", project);
 }
 
 /**
  * Get the current project
  */
 export function getCurrentProject(): IProject | undefined {
-  return getConfiguration().currentProject;
+	return getConfiguration().currentProject;
 }
 
 export function compareOrganizations(
-  orgA: IOrganization,
-  orgB: IOrganization
+	orgA: IOrganization,
+	orgB: IOrganization,
 ): number {
-  return orgA.uri.localeCompare(orgB.uri);
+	return orgA.uri.localeCompare(orgB.uri);
 }
 
 export function compareProjects(projA: IProject, projB: IProject): number {
-  return projA.name.localeCompare(projB.name);
+	return projA.name.localeCompare(projB.name);
 }
