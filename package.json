@@ -1,11 +1,10 @@
 {
-	"name": "azure-boards",
-	"displayName": "Azure Boards",
-	"description": "",
-	"main": "./build/extension/extension",
-	"scripts": {
-		"compile": "tsc -p ./"
-	},
+	"activationEvents": [
+		"onView:work-items",
+		"onCommand:azure-boards.add-organization",
+		"onCommand:azure-boards.remove-organization",
+		"onCommand:azure-boards.select-organization"
+	],
 	"contributes": {
 		"commands": [
 			{
@@ -114,22 +113,23 @@
 			]
 		}
 	},
-	"activationEvents": [
-		"onView:work-items",
-		"onCommand:azure-boards.add-organization",
-		"onCommand:azure-boards.remove-organization",
-		"onCommand:azure-boards.select-organization"
-	],
 	"dependencies": {
 		"applicationinsights": "3.4.0",
 		"keytar": "7.9.0",
 		"vsts-device-flow-auth": "1.136.0"
 	},
+	"description": "",
 	"devDependencies": {
 		"@types/keytar": "4.4.2",
 		"@types/node": "22.9.1"
 	},
+	"displayName": "Azure Boards",
 	"extensionDependencies": [
 		"vscode.git"
-	]
+	],
+	"main": "./build/extension/extension",
+	"name": "azure-boards",
+	"scripts": {
+		"compile": "tsc -p ./"
+	}
 }
