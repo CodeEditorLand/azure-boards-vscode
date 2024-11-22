@@ -14,6 +14,7 @@ import { openUrl } from "../util/open";
 import { IOrganization } from "./configuration";
 
 const ClientId = "97877f11-0fc6-4aee-b1ff-febb0519dd00";
+
 const RedirectUri = "https://java.visualstudio.com/";
 
 export async function getTokenUsingDeviceFlow(
@@ -23,15 +24,18 @@ export async function getTokenUsingDeviceFlow(
 		clientId: ClientId,
 		redirectUri: RedirectUri,
 	};
+
 	const tokenOptions: IDeviceFlowTokenOptions = {
 		tokenDescription: `Azure Boards VSCode extension: ${organization.uri}`,
 		tokenScope: "vso.project vso.work",
 	};
+
 	const dfa: DeviceFlowAuthenticator = new DeviceFlowAuthenticator(
 		organization.uri,
 		authOptions,
 		tokenOptions,
 	);
+
 	const details: DeviceFlowDetails = await dfa.GetDeviceFlowDetails();
 
 	// To sign in, use a web browser to open the page https://aka.ms/devicelogin and enter the code F3VXCTH2L to authenticate.
@@ -43,6 +47,7 @@ export async function getTokenUsingDeviceFlow(
 		placeHolder: undefined,
 		password: false,
 	});
+
 	if (value) {
 		// At this point, user has no way to cancel until our timeout expires. Before this point, they could
 		// cancel out of the showInputBox. After that, they will need to wait for the automatic cancel to occur.
@@ -67,6 +72,7 @@ export async function getTokenUsingDeviceFlow(
 			Resources.Configuration_Authenticating,
 			details.UserCode,
 		);
+
 		const token: string = await vscode.window.withProgress(
 			{ location: vscode.ProgressLocation.Window, title: title },
 			async () => {

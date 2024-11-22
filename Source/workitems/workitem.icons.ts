@@ -26,11 +26,13 @@ export class WorkItemTypeProvider {
 
 	private async _getIcons(): Promise<WorkItemTypeIcon[]> {
 		const organization = getCurrentOrganization();
+
 		if (!organization) {
 			return [];
 		}
 
 		const project = await getCurrentProject();
+
 		if (!project) {
 			return [];
 		}
@@ -41,6 +43,7 @@ export class WorkItemTypeProvider {
 
 		//  Get icons
 		const workItemTypes = await witApi.getWorkItemTypes(project.id);
+
 		const icons =
 			workItemTypes !== null
 				? workItemTypes.map((x) => new WorkItemTypeIcon(x))

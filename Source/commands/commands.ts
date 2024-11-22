@@ -30,6 +30,7 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 
 	vscode.commands.registerCommand(Commands.WorkItemMention, (args) => {
 		const workItemId = args.workItemId || args;
+
 		const gitExtension =
 			vscode.extensions.getExtension<GitExtension>("vscode.git");
 
@@ -48,15 +49,20 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 	) {
 		if (gitExtension) {
 			const git = gitExtension.exports.getAPI(1);
+
 			if (git.repositories.length) {
 				// Determine whether source control is GitHub, if so, prefix mention ID syntax with "AB"
 				let mentionSyntaxPrefix: string = ``;
+
 				const activeRemotes: Remote[] = [];
+
 				const originRemotes = git.repositories[0].state.remotes.find(
 					(remote) => remote.name === "origin",
 				);
+
 				if (originRemotes) {
 					activeRemotes.push(originRemotes);
+
 					const remoteUrl =
 						activeRemotes[0].fetchUrl ||
 						activeRemotes[0].pushUrl ||
@@ -74,7 +80,9 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 				// Add work item mention to new line if existing commit message, otherwise start with Fix mention
 				const existingCommitMessage: string =
 					git.repositories[0].inputBox.value;
+
 				let mentionText: string = ``;
+
 				if (existingCommitMessage) {
 					mentionText =
 						`\n` +
@@ -106,8 +114,11 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 		) {
 			// TODO: Determine if GitHub Enterprise (non "github.com" host)
 			const remoteUri = vscode.Uri.parse(remoteUrl);
+
 			const authority = remoteUri.authority;
+
 			const matches = /^(?:.*:?@)?([^:]*)(?::.*)?$/.exec(authority);
+
 			if (
 				matches &&
 				matches.length >= 2 &&

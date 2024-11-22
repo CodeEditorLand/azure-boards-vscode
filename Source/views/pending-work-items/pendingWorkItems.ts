@@ -20,8 +20,10 @@ export class PendingWorkItemTreeNodeProvider
 	constructor() {
 		const gitExtension =
 			vscode.extensions.getExtension<GitExtension>("vscode.git");
+
 		if (gitExtension) {
 			const git = gitExtension.exports.getAPI(1);
+
 			setInterval(() => {
 				const value =
 					(git &&
@@ -31,10 +33,12 @@ export class PendingWorkItemTreeNodeProvider
 					"";
 
 				const matches = value.match(/(#(\d+))/gm);
+
 				const newIds =
 					(matches &&
 						matches.map((x) => parseInt(x.replace(/[^\d]/, "")))) ||
 					[];
+
 				if (newIds.some((v, i) => this.workItemIds[i] !== v)) {
 					this.workItemIds = newIds;
 					this._onDidChangeTreeData.fire();

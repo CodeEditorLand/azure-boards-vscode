@@ -48,6 +48,7 @@ export async function addOrganization(
 	const config = getConfig();
 
 	let organizations: IOrganization[] = [];
+
 	if (config.has("organizations")) {
 		organizations = config.get("organizations", []);
 	}
@@ -68,13 +69,16 @@ export async function removeOrganization(
 	organization: IOrganization,
 ): Promise<void> {
 	const config = getConfig();
+
 	if (config.has("organizations")) {
 		const organizations: IOrganization[] = config.get("organizations", []);
+
 		const idx = organizations.findIndex(
 			(x) =>
 				x.uri.toLocaleLowerCase() ===
 				organization.uri.toLocaleLowerCase(),
 		);
+
 		if (idx >= 0) {
 			organizations.splice(idx, 1);
 		}

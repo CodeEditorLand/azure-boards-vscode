@@ -21,16 +21,19 @@ export class MyWorkProvider {
 
 	async getMyWorkItems(type: string): Promise<WorkItemComposite[]> {
 		const currentOrganization = getCurrentOrganization();
+
 		if (!currentOrganization) {
 			return [];
 		}
 
 		const currentProject = getCurrentProject();
+
 		if (!currentProject) {
 			return [];
 		}
 
 		const webApi = await getWebApiForOrganization(currentOrganization);
+
 		const client = webApi.rest.client;
 
 		const baseUrl =
@@ -45,6 +48,7 @@ export class MyWorkProvider {
 		const witApi = await webApi.getWorkItemTrackingApi(); //needed to call wit api
 
 		const body: string = await res.readBody();
+
 		const myWorkResponse: IMyWorkResponse = JSON.parse(body);
 
 		// get work item icons from work item provider

@@ -31,6 +31,7 @@ export class SearchProvider {
 		);
 
 		let body: string = await res.readBody();
+
 		let jsonObject: ISearchRoot = JSON.parse(body);
 
 		const workitems: WorkItem[] = jsonObject.results.map(

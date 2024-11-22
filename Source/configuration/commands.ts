@@ -69,6 +69,7 @@ export function registerConfigurationCommands(
 				}
 
 				const token = await getTokenUsingDeviceFlow(organization);
+
 				if (!token) {
 					return;
 				}
@@ -88,6 +89,7 @@ export function registerConfigurationCommands(
 			ConfigurationCommands.RemoveOrganization,
 			async () => {
 				const organization = await selectOrganization();
+
 				if (!organization || organization === "add") {
 					return;
 				}
@@ -96,12 +98,14 @@ export function registerConfigurationCommands(
 
 				// If the removed organization was the current one, remove that as well
 				const currentOrganization = getCurrentOrganization();
+
 				if (
 					currentOrganization &&
 					organization.uri.toLocaleLowerCase() ===
 						currentOrganization.uri.toLocaleLowerCase()
 				) {
 					setCurrentOrganization(undefined);
+
 					setCurrentProject(undefined);
 				}
 
@@ -117,6 +121,7 @@ export function registerConfigurationCommands(
 			ConfigurationCommands.SelectOrganization,
 			async () => {
 				const organization = await selectOrganization(true);
+
 				if (!organization) {
 					return;
 				}
@@ -131,6 +136,7 @@ export function registerConfigurationCommands(
 					);
 				} else {
 					const project = await selectProject(organization);
+
 					if (project) {
 						await setCurrentOrganization(organization);
 						await setCurrentProject(project);
@@ -152,6 +158,7 @@ async function selectOrganization(
 	allowAdd?: boolean,
 ): Promise<IOrganization | "add" | undefined> {
 	const { organizations } = getConfiguration();
+
 	const AddOrganizationItem: IOrganizationQuickPickItem = {
 		label: "➕ Add organization",
 	};
@@ -163,6 +170,7 @@ async function selectOrganization(
 				organization,
 			}) as IOrganizationQuickPickItem,
 	);
+
 	if (allowAdd) {
 		organizationOptions.unshift(AddOrganizationItem);
 	}
@@ -170,6 +178,7 @@ async function selectOrganization(
 	const selection = await vscode.window.showQuickPick(organizationOptions, {
 		placeHolder: Resources.Configuration_SelectOrganization,
 	});
+
 	if (selection) {
 		if (selection === AddOrganizationItem) {
 			return "add";
@@ -195,8 +204,11 @@ async function selectProject(
 		},
 		async () => {
 			const webApi = await getWebApiForOrganization(organization);
+
 			const coreApi = await webApi.getCoreApi(organization.uri);
+
 			const projects = await coreApi.getProjects();
+
 			return projects.map(
 				(p) =>
 					({
@@ -219,6 +231,7 @@ async function selectProject(
 			placeHolder: Resources.Configuration_SelectProject,
 		},
 	);
+
 	if (!selection) {
 		return undefined;
 	}
