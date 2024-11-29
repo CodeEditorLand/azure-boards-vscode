@@ -11,6 +11,7 @@ export interface IOrganization {
 
 export interface IConfiguration {
 	currentOrganization: IOrganization | undefined;
+
 	currentProject: IProject | undefined;
 
 	organizations: IOrganization[];
@@ -18,6 +19,7 @@ export interface IConfiguration {
 
 export interface IProject {
 	id: string;
+
 	name: string;
 }
 

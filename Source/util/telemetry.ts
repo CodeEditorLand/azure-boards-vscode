@@ -17,6 +17,7 @@ export function trackTelemetryEvent(name: string) {
 	const organizationUri = currentOrganization ? currentOrganization.uri : "";
 
 	let client = _appInsights.defaultClient;
+
 	client.trackEvent({
 		name: name,
 		properties: { organization: organizationUri },
@@ -29,6 +30,7 @@ export function trackTelemetryException(error: Error) {
 	const organizationUri = currentOrganization ? currentOrganization.uri : "";
 
 	let client = _appInsights.defaultClient;
+
 	client.trackException({
 		exception: new Error(error.message),
 		properties: { organization: organizationUri },

@@ -131,6 +131,7 @@ export function registerConfigurationCommands(
 					await vscode.commands.executeCommand(
 						ConfigurationCommands.AddOrganization,
 					);
+
 					await vscode.commands.executeCommand(
 						ConfigurationCommands.SelectOrganization,
 					);
@@ -139,6 +140,7 @@ export function registerConfigurationCommands(
 
 					if (project) {
 						await setCurrentOrganization(organization);
+
 						await setCurrentProject(project);
 					}
 

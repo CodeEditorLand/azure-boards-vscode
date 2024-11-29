@@ -7,9 +7,13 @@ import { WorkItemTypeIcon } from "../../workitems/workitem.icons";
 
 export class WorkItemComposite {
 	public readonly workItemType: string;
+
 	public readonly workItemId: number;
+
 	public readonly workItemTitle: string;
+
 	public readonly workItemIcon: string;
+
 	public readonly url: string;
 
 	private readonly _fallBackIconUrl =
@@ -22,7 +26,9 @@ export class WorkItemComposite {
 		this.workItemType = workItem.fields
 			? workItem.fields["System.WorkItemType"]
 			: "";
+
 		this.workItemId = workItem.fields ? workItem.fields["System.Id"] : -1;
+
 		this.workItemTitle = workItem.fields
 			? workItem.fields["System.Title"]
 			: "";
@@ -35,6 +41,7 @@ export class WorkItemComposite {
 		this.workItemIcon = workItemTypeIcons
 			? workItemTypeIcons[i].url.toString()
 			: this._fallBackIconUrl;
+
 		this.url = workItem._links.html.href;
 	}
 }

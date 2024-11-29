@@ -74,6 +74,7 @@ class NoOpenFolderNode extends TreeNodeParent {
 		super(Resources.Configuration_NoOpenFolder);
 
 		this.contextValue = "no-folder";
+
 		this.iconPath = undefined;
 	}
 }
@@ -83,7 +84,9 @@ class NoConnectionNode extends TreeNodeParent {
 		super(Resources.Configuration_ClickToConnect);
 
 		this.contextValue = "no-connection";
+
 		this.iconPath = undefined;
+
 		this.command = {
 			title: "Connect",
 			command: ConfigurationCommands.SelectOrganization,
@@ -121,8 +124,11 @@ export class TreeNodeChildWorkItem extends TreeNodeParent {
 
 export class WorkItemNode extends TreeNodeParent {
 	public readonly workItemId: number;
+
 	public readonly workItemType: string;
+
 	public readonly iconPath: vscode.Uri;
+
 	public readonly editUrl: string;
 
 	constructor(workItemComposite: WorkItemComposite) {
@@ -131,10 +137,15 @@ export class WorkItemNode extends TreeNodeParent {
 		);
 
 		this.iconPath = vscode.Uri.parse(workItemComposite.workItemIcon);
+
 		this.workItemId = +workItemComposite.workItemId;
+
 		this.workItemType = workItemComposite.workItemType;
+
 		this.editUrl = workItemComposite.url;
+
 		this.contextValue = "work-item";
+
 		this.tooltip = "Open work item in Azure Boards";
 
 		this.command = {

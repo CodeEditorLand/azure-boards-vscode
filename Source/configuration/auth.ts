@@ -82,6 +82,7 @@ export async function getTokenUsingDeviceFlow(
 				if (accessToken) {
 					clearTimeout(timer);
 				}
+
 				return accessToken;
 			},
 		);

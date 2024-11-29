@@ -10,6 +10,7 @@ import { WorkItemTreeNodeProvider } from "./views/workitems/workitem.tree";
 
 export function activate(context: vscode.ExtensionContext) {
 	startTelemetry();
+
 	trackTelemetryEvent("Loading Azure Boards Extension");
 
 	registerTreeView(context);

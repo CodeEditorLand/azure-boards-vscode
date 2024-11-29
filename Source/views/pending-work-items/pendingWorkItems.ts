@@ -41,6 +41,7 @@ export class PendingWorkItemTreeNodeProvider
 
 				if (newIds.some((v, i) => this.workItemIds[i] !== v)) {
 					this.workItemIds = newIds;
+
 					this._onDidChangeTreeData.fire();
 				}
 			}, 2000);

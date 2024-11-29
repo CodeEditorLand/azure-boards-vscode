@@ -55,15 +55,19 @@ export class WorkItemTypeProvider {
 
 export class WorkItemTypeIcon {
 	public readonly type: string = "";
+
 	public readonly icon: string = "";
+
 	public readonly url: string = "";
 
 	constructor(workItemType: WorkItemType) {
 		this.type = workItemType.name ? workItemType.name : "";
+
 		this.icon =
 			workItemType.icon && workItemType.icon.id
 				? workItemType.icon.id
 				: "";
+
 		this.url =
 			workItemType.icon && workItemType.icon.url
 				? workItemType.icon.url

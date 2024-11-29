@@ -67,6 +67,7 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 						activeRemotes[0].fetchUrl ||
 						activeRemotes[0].pushUrl ||
 						"";
+
 					mentionSyntaxPrefix = determineMentionSyntaxPrefix(
 						remoteUrl,
 						mentionSyntaxPrefix,
@@ -93,6 +94,7 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 					mentionText =
 						`Fix ` + mentionSyntaxPrefix + `#${workItemId} `;
 				}
+
 				git.repositories[0].inputBox.value += mentionText;
 
 				// Navigate to the Source Control view
@@ -126,6 +128,7 @@ export function registerGlobalCommands(context: vscode.ExtensionContext) {
 			) {
 				mentionSyntaxPrefix = `AB`;
 			}
+
 			return mentionSyntaxPrefix;
 		}
 	}

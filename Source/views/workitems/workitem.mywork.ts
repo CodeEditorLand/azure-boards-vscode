@@ -73,6 +73,7 @@ export class MyWorkProvider {
 
 		// loop through work items list and map it to temp map collection
 		const workItemsMap: { [workItemId: number]: WorkItem } = {};
+
 		workItems.forEach((wi) => (workItemsMap[wi.id ? wi.id : -1] = wi));
 
 		// set the order of workitems to match that of returned id's
