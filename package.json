@@ -127,7 +127,7 @@
 	},
 	"devDependencies": {
 		"@types/keytar": "4.4.2",
-		"@types/node": "22.13.1"
+		"@types/node": "22.13.4"
 	},
 	"extensionDependencies": [
 		"vscode.git"
